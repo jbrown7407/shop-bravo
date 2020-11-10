@@ -1,119 +1,56 @@
 import React from "react";
 
-const products = [
+const groceries = [
+ 
   {
-    name: "allen wrench",
-    price: 2.99,
-    description: "handy tool",
+    item: "Pods",
+    brand: "Tide",
+    units: 5,
+    quantity: 13,
+    isPurchased: false
   },
   {
-    name: "cornucopia",
-    price: 5.99,
-    description: "festive holiday decoration",
+    item: "Toothpaste",
+    brand: "Crest",
+    units: 2,
+    quantity: 22,
+    isPurchased: false
   },
   {
-    name: "banana",
-    price: 0.99,
-    description: "full of potassium",
+    item: "Tequila",
+    brand: "Tesla",
+    units: 99,
+    quantity: 11,
+    isPurchased: false
   },
   {
-    name: "guillotine (cigar)",
-    price: 10.59,
-    description: "behead your stub",
+    item: "Cough Drops",
+    brand: "Ricola",
+    units: 1,
+    quantity: 100,
+    isPurchased: false
   },
   {
-    name: "jack-o-lantern",
-    price: 3.99,
-    description: "spooky seasonal fun",
-  },
-  {
-    name: "doggie treat (box)",
-    price: 5.99,
-    description: "fido loves 'em",
-  },
-  {
-    name: "egg separator",
-    price: 3.99,
-    description: "it separates yolks from whites",
-  },
-  {
-    name: "LED lightbulb",
-    price: 6.55,
-    description: "It's super-efficient!",
-  },
-  {
-    name: "owl pellets",
-    price: 3.99,
-    description: "Don't ask what they used to be.",
-  },
-  {
-    name: "flag",
-    price: 5.99,
-    description: "catches the breeze",
-  },
-  {
-    name: "hair brush",
-    price: 6.99,
-    description: "fine boar bristles",
-  },
-  {
-    name: "iridium (one gram)",
-    price: 19.36,
-    description: "corrosion-resistant metal",
-  },
-  {
-    name: "quark",
-    price: 0.01,
-    description: "Very small",
-  },
-  {
-    name: "turtleneck",
-    price: 19.99,
-    description: "available in black and slightly-darker black",
-  },
-  {
-    name: "kaleidoscope",
-    price: 8.25,
-    description: "tube with moving plastic pieces inside",
-  },
-  {
-    name: "mitt (leather)",
-    price: 15,
-    description: "regulation sized",
-  },
-  {
-    name: "nothing",
-    price: 10,
-    description: "Hey, if you pay us, we won't ask any questions.",
-  },
-  {
-    name: "violin",
-    price: 2000,
-    description: "Talk about a JS fiddle...",
-  },
-  {
-    name: "yoyo",
-    price: 1,
-    description: "We had to pull some strings to get this one in.",
-  },
-  {
-    name: "pincushion",
-    price: 1.99,
-    description: "You'll get 'stuck' on it",
+    item: "Chocolate",
+    brand: "Hershey",
+    units: 3,
+    quantity: 8,
+    isPurchased: false
   },
 ];
 
-console.log(products);
+console.log(groceries);
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: products,
-      name: "",
-      price: 0,
-      description: "",
-      isHiring: true,
+      groceries: groceries,
+      item: "",
+      brand: "",
+      units: 0,
+      quantity: 0,
+      isPurchased: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -128,70 +65,94 @@ class App extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const newProduct = {
-      name: this.state.name,
-      price: this.state.price,
-      description: this.state.description,
+    const newGrocery = {
+      item: this.state.item,
+      brand: this.state.brand,
+      units: this.state.units,
+      quantity: this.state.quantity,
+      isPurchased: this.state.isPurchased
     };
     this.setState({
-      products: [...this.state.products, newProduct],
-      name: "",
-      price: 0,
-      description: "",
+      groceries: [...this.state.groceries, newGrocery],
+      item: "",
+      brand: 0,
+      units: 0,
+      quantity: 0,
+      isPurchased: false
     });
   }
 
   render() {
     return (
       <div>
-        <h1>Big Time Shopping</h1>
+        <h1>My Grocery List</h1>
 
-        {this.state.isHiring ? (
-          <h2>Yes, we are hiring!</h2>
+        {this.state.isInStock ? (
+          <h2>Yes, in stock!</h2>
         ) : (
-          <h2>Sorry, check back tomorrow.</h2>
+          <h2>Out of stock, check back tomorrow.</h2>
         )}
 
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="name">Name: </label>
+          <label htmlFor="item">Item: </label>
           <input
             type="text"
-            id="name"
-            value={this.state.name}
+            id="item"
+            value={this.state.item}
             onChange={this.handleChange}
           />
           <br />
-          <label htmlFor="price">Price: </label>
+          <label htmlFor="brand">Brand: </label>
+          <input
+            type="text"
+            id="brand"
+            value={this.state.brand}
+            onChange={this.handleChange}
+          />
+          <br />
+          <label htmlFor="units">units: </label>
           <input
             type="number"
-            id="price"
-            value={this.state.price}
+            id="units"
+            value={this.state.units}
             onChange={this.handleChange}
           />
           <br />
-          <label htmlFor="description">Description: </label>
+          <br />
+          <label htmlFor="brand">Quantity: </label>
           <input
-            type="text"
-            id="description"
-            value={this.state.description}
+            type="number"
+            id="quantity"
+            value={this.state.quantity}
+            onChange={this.handleChange}
+          />
+           <br />
+          <label htmlFor="brand">Is Purchased? </label>
+          <input
+            type="boolean"
+            id="isPurchased"
+            value={this.state.isPurchased}
             onChange={this.handleChange}
           />
           <br />
-          <input type="submit" value="Add Product" />
+          <input type="submit" value="Add Grocery" />
+          
         </form>
 
         <div>
-          <h2>Preview our new item</h2>
-          <h4>Name: {this.state.name}</h4>
-          <h4>Price: {this.state.price}</h4>
-          <h4>Description: {this.state.description}</h4>
+          <h2>Item Preview</h2> 
+          <h4>Item: {this.state.item}</h4>
+          <h4>Brand: {this.state.brand}</h4>
+          <h4>Units: {this.state.units}</h4>
+          <h4>Quantity: {this.state.quantity}</h4>
+          <h4>Is Purchased?: {this.state.isPurchased}</h4>
         </div>
 
         <ul>
-          {this.state.products.map((product, i) => {
+          {this.state.groceries.map((Grocery, i) => {
             return (
               <li key={i}>
-                {product.name} | ${product.price} | {product.description}
+                Item: {Grocery.item} | Brand: {Grocery.brand} | Units: {Grocery.units} | Quantity: {Grocery.quantity} | IsPurchased: {Grocery.isPurchased}
               </li>
             );
           })}

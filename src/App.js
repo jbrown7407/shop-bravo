@@ -7,39 +7,51 @@ const groceries = [
     brand: "Tide",
     units: 5,
     quantity: 13,
-    isPurchased: false
+    isPurchased: "True"
   },
   {
     item: "Toothpaste",
     brand: "Crest",
     units: 2,
     quantity: 22,
-    isPurchased: false
+    isPurchased: "True"
   },
   {
     item: "Tequila",
     brand: "Tesla",
     units: 99,
     quantity: 11,
-    isPurchased: false
+    isPurchased: "True"
   },
   {
     item: "Cough Drops",
     brand: "Ricola",
     units: 1,
     quantity: 100,
-    isPurchased: false
+    isPurchased: "True"
   },
   {
     item: "Chocolate",
     brand: "Hershey",
     units: 3,
     quantity: 8,
-    isPurchased: false
+    isPurchased: "True"
   },
 ];
 
 console.log(groceries);
+class MyHeader extends React.Component {
+  render() {
+    return (
+      <div>
+      <h1 style={{color: "red"}}>Hello Style!</h1>
+      <p>Add a little style!</p>
+      </div>
+    );
+  }
+}
+
+
 
 class App extends React.Component {
   constructor(props) {
@@ -84,13 +96,22 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>My Grocery List</h1>
+      <div style={
+         {border: "5px solid black",
+        color: "green",
+    }
+         
+         
+         }>
+        <h1>My Grocery List</h1>  
 
-        {this.state.isInStock ? (
-          <h2>Yes, in stock!</h2>
+
+        
+
+        {this.state.isPurchased ? (
+ <h1 style={{color: "red"}}>Yes, In Stock!</h1>     
         ) : (
-          <h2>Out of stock, check back tomorrow.</h2>
+          <h2 style={{color: "red"}}>Out of stock, check back tomorrow.</h2>
         )}
 
         <form onSubmit={this.handleSubmit}>
@@ -134,24 +155,28 @@ class App extends React.Component {
             value={this.state.isPurchased}
             onChange={this.handleChange}
           />
-          <br />
-          <input type="submit" value="Add Grocery" />
+          <br />        <br />
+         ==> <input type="submit" value="Add Grocery" style={{color: "green"}} />
           
         </form>
 
-        <div>
-          <h2>Item Preview</h2> 
+        <div style={{color: "Red"}}>
+          <h1 style={{color: "blue"}}>Item Preview</h1> 
           <h4>Item: {this.state.item}</h4>
           <h4>Brand: {this.state.brand}</h4>
           <h4>Units: {this.state.units}</h4>
           <h4>Quantity: {this.state.quantity}</h4>
-          <h4>Is Purchased?: {this.state.isPurchased}</h4>
+         {this.state.isInStock ? (
+              <h1 style={{color: "red"}}>Purchase</h1>     
+        ) : (
+             <h2 style={{color: "red"}}>Not yet purchased.</h2>
+        )} <h4>Is Purchased?: {this.state.isPurchased}</h4>
         </div>
 
         <ul>
           {this.state.groceries.map((Grocery, i) => {
             return (
-              <li key={i}>
+              <li key={i} style={{color: "blue"}}>
                 Item: {Grocery.item} | Brand: {Grocery.brand} | Units: {Grocery.units} | Quantity: {Grocery.quantity} | IsPurchased: {Grocery.isPurchased}
               </li>
             );
